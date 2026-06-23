@@ -19,4 +19,4 @@ class Quadro:
         for p in self.__tarefas:
             if isinstance (p, tipo):
                 tarefas_filtradas.append(p)
-            return tarefas_filtradas
+        return tarefas_filtradas
