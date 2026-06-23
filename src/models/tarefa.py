@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class tarefa(ABC):
+class Tarefa(ABC):
     def __init__(self, titulo, descricao, status):
        self.__titulo = titulo
        self.__descricao = descricao
@@ -25,14 +25,14 @@ class tarefa(ABC):
     def set_status(self, status):
         self.__status = status
 
-class tarefaPessoal(tarefa):
+class TarefaPessoal(Tarefa):
     def __init__(self, titulo, descricao, status):
         super().__init__(titulo, descricao, status)
     def exibirDetalhes(self):
         return (f"Titulo: {self.get_titulo()};\n Descriçao: {self.get_descricao()};\n"
                 f"Status: {self.get_status()}")
     
-class tarefaAcademica(tarefa):
+class TarefaAcademica(Tarefa):
     def __init__(self, titulo, descricao, status, disciplina, data_entrega, prioridade):
         super().__init__(titulo, descricao, status)
         self.__disciplina = disciplina
