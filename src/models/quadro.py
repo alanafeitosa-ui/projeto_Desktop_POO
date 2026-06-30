@@ -1,4 +1,4 @@
-from src.models.tarefa import tarefaAcademica, tarefaPessoal
+from src.models.tarefa import TarefaAcademica, TarefaPessoal
 class Quadro:
     def __init__(self, titulo, filtro):
         self.__tarefas = []
