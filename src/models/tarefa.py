@@ -11,7 +11,7 @@ class Tarefa(ABC):
     def mover_para_andamento(self) -> None:
         self.__status = "Em andamento"
     def mover_para_concluido(self) -> None:
-        self.__status = "Concluido"
+        self.__status = "Concluído"
     def get_titulo(self) -> str:
         return self.__titulo
     def set_titulo (self, titulo: str) -> None:
