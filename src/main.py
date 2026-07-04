@@ -7,18 +7,19 @@ tarefaAcademica2 = TarefaAcademica("Lista de fisica", "Realizar lista extra", "E
 meu_Quadro.adicionar_tarefa(tarefaAcademica1)
 meu_Quadro.adicionar_tarefa(tarefaAcademica2)
 meu_Quadro.adicionar_tarefa(tarefaPessoal_1)
+print("==== Todas as tarefas ====\n")
 for i in meu_Quadro.listar_tarefas():
     print (i.exibir_detalhes())
-print("\nTarefas Acadêmicas\n")
+print("\n==== Tarefas Acadêmicas ====\n")
 for i in meu_Quadro.filtrar_por_tipo(TarefaAcademica):
     print(i.exibir_detalhes())
 meu_Quadro.remover_tarefa(tarefaAcademica2)
-print("\nApós remoção da segunda tarefa acadêmica: \n")
+print("\n==== Após remoção ====\n")
 for i in meu_Quadro.listar_tarefas():
     print (i.exibir_detalhes())
 tarefaAcademica1.mover_para_andamento()
 tarefaPessoal_1.mover_para_concluido()
-print("\nApós alterações: \n")
+print("\n==== Após alterações ====\n")
 for i in meu_Quadro.listar_tarefas():
     print (i.exibir_detalhes())
 meu_Quadro.listar_tarefas()
