@@ -6,7 +6,7 @@ class Quadro:
         self.__titulo = titulo
     def get_tarefas(self):
         return self.__tarefas
-    def set_tarefas(self, tarefa: Tarefa):
+    def set_tarefas(self, tarefa: List[Tarefa]):
         self.__tarefas = tarefa
     def adicionar_tarefa(self, tarefa: Tarefa):
         self.get_tarefas().append(tarefa)
@@ -14,7 +14,7 @@ class Quadro:
         self.get_tarefas().remove(tarefa)
     def listar_tarefas(self):
         return self.get_tarefas()
-    def filtrar_por_tipo (self, tipo: str):
+    def filtrar_por_tipo (self, tipo: type):
         tarefas_filtradas = []
         for p in self.__tarefas:
             if isinstance (p, tipo):
