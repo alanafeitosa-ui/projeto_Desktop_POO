@@ -12,12 +12,12 @@ for i in meu_Quadro.listar_tarefas():
 print("\nTarefas Acadêmicas\n")
 for i in meu_Quadro.filtrar_por_tipo(TarefaAcademica):
     print(i.exibir_detalhes())
-tarefaAcademica1.mover_para_andamento()
-tarefaPessoal_1.mover_para_concluido()
+meu_Quadro.remover_tarefa(tarefaAcademica2)
 print("\nApós remoção da segunda tarefa acadêmica: \n")
 for i in meu_Quadro.listar_tarefas():
     print (i.exibir_detalhes())
-meu_Quadro.remover_tarefa(tarefaAcademica2)
+tarefaAcademica1.mover_para_andamento()
+tarefaPessoal_1.mover_para_concluido()
 print("\nApós alterações: \n")
 for i in meu_Quadro.listar_tarefas():
     print (i.exibir_detalhes())
