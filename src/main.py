@@ -22,4 +22,4 @@ tarefaPessoal_1.mover_para_concluido()
 print("\n==== Após alterações ====\n")
 for i in meu_Quadro.listar_tarefas():
     print (i.exibir_detalhes())
-meu_Quadro.listar_tarefas()
+
