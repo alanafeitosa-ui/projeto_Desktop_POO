@@ -6,11 +6,11 @@ class Tarefa(ABC):
        self.__descricao = descricao
        self.__status = status
     @abstractmethod
-    def exibirDetalhes(self):
+    def exibir_detalhes(self):
         pass
-    def moverParaAndamento(self):
+    def mover_para_andamento(self):
         self.__status = "Em andamento"
-    def moverParaConcluido(self):
+    def mover_para_concluido(self):
         self.__status = "Concluido"
     def get_titulo(self):
         return self.__titulo
@@ -28,7 +28,7 @@ class Tarefa(ABC):
 class TarefaPessoal(Tarefa):
     def __init__(self, titulo, descricao, status):
         super().__init__(titulo, descricao, status)
-    def exibirDetalhes(self):
+    def exibir_detalhes(self):
         return (f"Titulo: {self.get_titulo()};\n Descriçao: {self.get_descricao()};\n"
                 f"Status: {self.get_status()}")
     
@@ -50,9 +50,9 @@ class TarefaAcademica(Tarefa):
         return self.__prioridade
     def set_prioridade(self, prioridade):
         self.__prioridade = prioridade
-    def exibirDetalhes(self):
+    def exibir_detalhes(self):
         return (f"Titulo: {self.get_titulo()};\n Descriçao: {self.get_descricao()};\n"
                 f"Status: {self.get_status()};\n Disciplina: {self.get_disciplina()};\n"
                 f"Data de entrega: {self.get_data_entrega()};\n Prioridade: {self.get_prioridade()}")
-    def verificarPrazo(self):
+    def verificar_prazo(self):
         return self.get_data_entrega()
