@@ -26,7 +26,7 @@ class Tarefa(ABC):
     def set_status(self, status: str) -> None:
         self.__status = status
     def __str__(self):
-        return self.get_titulo()
+        return f"{self.get_titulo()} ({self.get_status()})"
 
 class TarefaPessoal(Tarefa):
     def __init__(self, titulo:str, descricao: str, status: str):
@@ -58,4 +58,10 @@ class TarefaAcademica(Tarefa):
                 f"Status: {self.get_status()};\n Disciplina: {self.get_disciplina()};\n"
                 f"Data de entrega: {self.get_data_entrega()};\n Prioridade: {self.get_prioridade()}")
     def verificar_prazo(self) -> date:
-        return self.get_data_entrega()
+        hoje = date.today()
+        if self.get_data_entrega() < hoje:
+            return "Prazo vencido!"
+        elif self.get_data_entrega() == hoje:
+            return "A entrega é hoje!"
+        else:
+            return "Dentro do prazo"
