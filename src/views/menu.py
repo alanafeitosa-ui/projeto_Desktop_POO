@@ -15,32 +15,32 @@ class Menu:
             print("4 - Filtrar tarefas")
             print("5 - Remover tarefa")
             print("6 - Alterar status para em andamento")
-            print("7 - Alterar status para concluida")
+            print("7 - Alterar status para concluído")
             print("8 - Listar tarefas")
             print("9 - Exibir detalhes das tarefas")
             print("10 - Parar programa")
-            opcao = str(input("Insira a seguir uma das opções acima: "))
+            opcao = str(input("Insira a seguir uma das opções acima: ").strip())
 
             match opcao:
                 case "1":
-                    nome_quadro = str(input("Insira a seguir o nome desejado do quadro: "))
+                    nome_quadro = str(input("Insira a seguir o nome desejado do quadro: ").strip())
                     self.__quadro = Quadro(nome_quadro)
 
                 case "2":
                     if self.__quadro is None:
                         print("Necessário criar um quadro antes de realizar esta ação!\n")
                     else:
-                        quantia_tarefa_academica = int(input("Insira a seguir a quantidade de tarefas acadêmicas que deseja criar: "))
+                        quantia_tarefa_academica = int(input("Insira a seguir a quantidade de tarefas acadêmicas que deseja criar: ").strip())
                         tarefas_academicas = []
                         for i in range(quantia_tarefa_academica):
                             print(f"\n=== Cadastro tarefa acadêmica {i + 1} ===")
-                            titulo = str(input(f"Insira a seguir o titulo da tarefa: "))
-                            descricao = str(input("Insira a seguir uma breve descrição sobre a tarefa: "))
-                            status = str(input("A tarefa está: a concluir, em andamento ou concluída? "))
-                            disciplina = str(input("Insira a seguir a disciplina referente a tarefa: "))
-                            data_entrega = str(input("Insira a data de entrega da tarefa no formato (dd/mm/aaaa): "))
+                            titulo = str(input(f"Insira a seguir o titulo da tarefa: ").strip())
+                            descricao = str(input("Insira a seguir uma breve descrição sobre a tarefa: ").strip())
+                            status = str(input("A tarefa está: a concluir, em andamento ou concluída? ").strip())
+                            disciplina = str(input("Insira a seguir a disciplina referente a tarefa: ").strip())
+                            data_entrega = str(input("Insira a data de entrega da tarefa no formato (dd/mm/aaaa): ").strip())
                             data_convertida = datetime.strptime(data_entrega, "%d/%m/%Y").date()
-                            prioridade = str(input("Insira a seguir a ordem de prioridade da tarefa: \n"))
+                            prioridade = str(input("Insira a seguir a ordem de prioridade da tarefa: ").strip())
                             
                             tarefa_acad = TarefaAcademica(titulo, descricao, status, disciplina, data_convertida, prioridade)
                             tarefas_academicas.append(tarefa_acad)
@@ -51,13 +51,13 @@ class Menu:
                     if self.__quadro is None:
                         print("Necessário criar um quadro antes de realizar esta ação!\n")
                     else:
-                        quantia_tarefa_pessoal = int(input("Insira a seguir a quantidade de tarefas pessoais que deseja criar: \n"))
+                        quantia_tarefa_pessoal = int(input("\nInsira a seguir a quantidade de tarefas pessoais que deseja criar: ").strip())
                         tarefas_pessoais = []
                         for i in range(quantia_tarefa_pessoal):
                             print(f"\n=== Cadastro tarefa pessoal {i + 1} ===")
-                            titulo = str(input("Insira a seguir o titulo da tarefa: "))
-                            descricao = str(input("Insira a seguir uma breve descrição sobre a tarefa: "))
-                            status = str(input("A tarefa está: a concluir, em andamento ou concluída?\n"))
+                            titulo = str(input("Insira a seguir o titulo da tarefa: ").strip())
+                            descricao = str(input("Insira a seguir uma breve descrição sobre a tarefa: ").strip())
+                            status = str(input("A tarefa está: a concluir, em andamento ou concluída?\n").strip())
                             tarefa_pes = TarefaPessoal(titulo, descricao, status)
                             tarefas_pessoais.append(tarefa_pes)
                         for tarefa in tarefas_pessoais:
@@ -80,21 +80,51 @@ class Menu:
 
                 case "5":
                     if self.__quadro is None:
-                        print("Necessário criar um quadro antes de realizar esta ação!")
+                        print("\nNecessário criar um quadro antes de realizar esta ação!")
                     else:
-                        pass
+                        if len(self.__quadro.listar_tarefas()) == 0:
+                            print("Não existem tarefas para remover, cadastre alguma antes de realizar a ação!")
+                        else:
+                            print("\n=== Tarefas a remover ===")
+                            for i, tarefa in enumerate(self.__quadro.listar_tarefas(), start=1):
+                                print(f"{i}. {tarefa}\n")
+                            indice = int(input("\nInsira a seguir o indice da tarefa que deseja remover: ").strip())
+                            if 1 < indice <= len(self.__quadro.listar_tarefas()):
+                                self.__quadro.remover_tarefa(self.__quadro.listar_tarefas()[indice - 1])
+                            else:
+                                print("Indice inválido")
 
                 case "6": 
                     if self.__quadro is None:
-                        print("Necessário criar um quadro antes de realizar esta ação!")
+                        print("\nNecessário criar um quadro antes de realizar esta ação!")
                     else:
-                        pass
+                        if len(self.__quadro.listar_tarefas()) == 0:
+                            print("\nNenhuma tarefa cadastrada")
+                        else:
+                            print("\n=== Tarefas === ")
+                            for i, tarefa in enumerate(self.__quadro.listar_tarefas(), start=1):
+                                print (f"{i}. {tarefa.exibir_detalhes()}\n")
+                            indice = int(input("\nInsira a seguir o indice da tarefa que deseja alterar o status para \"em andamento\": ").strip())
+                            if 1<= indice <= len(self.__quadro.listar_tarefas()):
+                                self.__quadro.listar_tarefas()[indice - 1].mover_para_andamento()
+                            else:
+                                print("Indice inválido")
 
                 case "7":
                     if self.__quadro is None:
                         print("Necessário criar um quadro antes de realizar esta ação!")
                     else:
-                        pass
+                        if len(self.__quadro.listar_tarefas()) == 0:
+                            print("\nNenhuma tarefa cadastrada")
+                        else:
+                            print("\n=== Tarefas === ")
+                            for i, tarefa in enumerate(self.__quadro.listar_tarefas(), start=1):
+                                print (f"{i}. {tarefa.exibir_detalhes()}\n")
+                            indice = int(input("\nInsira a seguir o indice da tarefa que deseja alterar o status para \"concluído\": ").strip())
+                            if 1<= indice <= len(self.__quadro.listar_tarefas()):
+                                self.__quadro.listar_tarefas()[indice - 1].mover_para_concluido()
+                            else:
+                                print("Indice inválido")
 
                 case "8":
                     if self.__quadro is None:
@@ -107,8 +137,8 @@ class Menu:
                     if self.__quadro is None:
                         print("Necessário criar um quadro antes de realizar esta ação!")
                     else:
-                        for i in self.__quadro.listar_tarefas():
-                            print (f"{i.exibir_detalhes()}\n")
+                        for i, tarefa in enumerate(self.__quadro.listar_tarefas(), start=1):
+                            print (f"{i}. {tarefa.exibir_detalhes()}\n")
 
                 case "10":
                     print("Encerrado sistema...")
