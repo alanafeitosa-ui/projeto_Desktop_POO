@@ -1,3 +1,4 @@
+from datetime import date
 from abc import ABC, abstractmethod
 
 class Tarefa(ABC):
@@ -24,6 +25,8 @@ class Tarefa(ABC):
         return self.__status
     def set_status(self, status: str) -> None:
         self.__status = status
+    def __str__(self):
+        return f"{self.get_titulo()} ({self.get_status()})"
 
 class TarefaPessoal(Tarefa):
     def __init__(self, titulo:str, descricao: str, status: str):
@@ -33,7 +36,7 @@ class TarefaPessoal(Tarefa):
                 f"Status: {self.get_status()}")
     
 class TarefaAcademica(Tarefa):
-    def __init__(self, titulo: str, descricao: str, status: str, disciplina: str, data_entrega: str, prioridade: str):
+    def __init__(self, titulo: str, descricao: str, status: str, disciplina: str, data_entrega: date, prioridade: str):
         super().__init__(titulo, descricao, status)
         self.__disciplina = disciplina
         self.__data_entrega = data_entrega
@@ -42,9 +45,9 @@ class TarefaAcademica(Tarefa):
         return self.__disciplina
     def set_disciplina(self, disciplina: str) -> None:
         self.__disciplina = disciplina
-    def get_data_entrega(self) -> str:
+    def get_data_entrega(self) -> date:
         return self.__data_entrega
-    def set_data_entrega(self, data_entrega: str) -> None:
+    def set_data_entrega(self, data_entrega: date) -> None:
         self.__data_entrega = data_entrega
     def get_prioridade(self) -> str:
         return self.__prioridade
@@ -54,5 +57,11 @@ class TarefaAcademica(Tarefa):
         return (f"Titulo: {self.get_titulo()};\n Descriçao: {self.get_descricao()};\n"
                 f"Status: {self.get_status()};\n Disciplina: {self.get_disciplina()};\n"
                 f"Data de entrega: {self.get_data_entrega()};\n Prioridade: {self.get_prioridade()}")
-    def verificar_prazo(self) -> str:
-        return self.get_data_entrega()
+    def verificar_prazo(self) -> date:
+        hoje = date.today()
+        if self.get_data_entrega() < hoje:
+            return "Prazo vencido!"
+        elif self.get_data_entrega() == hoje:
+            return "A entrega é hoje!"
+        else:
+            return "Dentro do prazo"
