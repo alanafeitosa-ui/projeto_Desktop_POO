@@ -6,6 +6,8 @@ class Quadro:
         self.__titulo = titulo
     def get_tarefas(self) -> List[Tarefa]:
         return self.__tarefas
+    def get_titulo (self) -> str:
+        return self.__titulo
     def set_tarefas(self, tarefas: List[Tarefa]) -> None:
         self.__tarefas = tarefas
     def adicionar_tarefa(self, tarefa: Tarefa) -> None:
