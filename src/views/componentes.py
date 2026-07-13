@@ -36,7 +36,7 @@ def status_para_coluna(status: str) -> str:
     s = status.lower().strip()
     if "andamento" in s:
         return "Em andamento"
-    elif "conclu" in s:
+    elif s == "concluído" or s == "concluido":
         return "Concluído"
     return "A Fazer"
 
