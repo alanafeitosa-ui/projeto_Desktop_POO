@@ -6,6 +6,7 @@ class Tarefa(ABC):
        self.__titulo = titulo
        self.__descricao = descricao
        self.__status = status
+       self._id = None
     @abstractmethod
     def exibir_detalhes(self) -> str:
         pass
@@ -27,6 +28,10 @@ class Tarefa(ABC):
         self.__status = status
     def __str__(self):
         return f"{self.get_titulo()} ({self.get_status()})"
+    def get_id(self) -> int:
+        return self._id
+    def set_id(self, id: int) -> None:
+        self._id = id
 
 class TarefaPessoal(Tarefa):
     def __init__(self, titulo:str, descricao: str, status: str):
