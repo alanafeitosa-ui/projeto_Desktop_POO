@@ -1,6 +1,5 @@
-from src.views.menu import Menu
-from src.database.conexao import criar_tabelas
-
+from src.models.quadro import Quadro
+from src.views.janela_principal import iniciar
+ 
 if __name__ == "__main__":
-    criar_tabelas()
-    Menu()
+    iniciar()
